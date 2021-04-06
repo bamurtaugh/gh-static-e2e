@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from 'react';
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -7,13 +6,14 @@ const App = () => {
 
   useEffect(() => {
     async function getProducts() {
-      const response = await axios.get("api/products");
-      setProducts(response.data);
+      const response = await fetch('/GetProducts').then(res => res.json());
+      setProducts(response);
       setLoading(false);
     }
 
     getProducts();
-  }, []);
+
+  }, [])
 
   return (
     <div id="app">
@@ -39,33 +39,46 @@ const App = () => {
                 </tr>
               </thead>
               <tbody>
-                {products.map(
-                  ({ id, name, brand, price, stockUnits }, index) => (
-                    <tr>
-                      <td>{name}</td>
-                      <td>{brand.name}</td>
-                      <td>{price}</td>
-                      <td class="has-text-centered">{stockUnits}</td>
-                    </tr>
-                  )
-                )}
+                {products.map(({ id, name, brand, price, stockUnits }, index) => (
+                  <tr>
+                    <td>
+                      <label for="" className="label" type="text">
+                        {name}
+                      </label>
+                    </td>
+                    <td>
+                      <label for="" className="label">
+                        {brand.name}
+                      </label>
+                    </td>
+                    <td>
+                      <label for="" className="label">
+                        {price}
+                      </label>
+                    </td>
+                    <td>
+                      <label for="" className="label has-text-centered">
+                        {stockUnits}
+                      </label>
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
             {loading ? (
               <div className="has-text-centered" v-show="products.length < 1">
                 <h2 className="is-size-4 has-text-info">Loading...</h2>
               </div>
-            ) : (
-              ""
-            )}
+
+            ) : ''}
           </div>
           <div id="toast" v-show="toast.show" className="container">
             <h2 className="is-size-5 has-text-white">Unable to reach API</h2>
           </div>
-        </div>
-      </section>
-    </div>
+        </div >
+      </section >
+    </div >
   );
-};
+}
 
 export default App;
