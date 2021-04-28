@@ -2,11 +2,25 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Attach to Node Functions",
             "type": "node",
-            "request": "attach",
+            "request": "launch",
+            "name": "Launch Server",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "server"
+            ],
             "port": 9229,
-            "preLaunchTask": "func: host start"
+            "skipFiles": [
+                "<node_internals>/**"
+            ]
+        },
+        {
+            "name": "Launch Chrome (Desktop Only)",
+            "request": "launch",
+            "type": "pwa-chrome",
+            "url": "http://localhost:3000",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
