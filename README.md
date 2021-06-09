@@ -38,6 +38,6 @@ Add another line
     ```
 
 
-## Forward ports
+## Forwarded ports
 
 1. Forward ports 3000 and 7071
