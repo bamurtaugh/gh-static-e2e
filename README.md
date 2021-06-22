@@ -1,6 +1,6 @@
 # Static Web App
 
-Update readme.
+Update readme!
 
 ## Setup
 
